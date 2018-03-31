@@ -13,6 +13,9 @@ define('aurelia-typed-observable-plugin', ['exports', 'aurelia-logging', 'aureli
       boolean: function (a) {
           return !!a;
       },
+      booleanAttr: function (val) {
+          return val || val === '' ? true : false;
+      },
       date: function (val) {
           // Invalid date instances are quite problematic
           // so we need to deal with it properly by default
@@ -225,7 +228,7 @@ define('aurelia-typed-observable-plugin', ['exports', 'aurelia-logging', 'aureli
        */
       return deco;
   };
-  ['string', 'number', 'boolean', 'date'].forEach(createTypedBindable);
+  ['string', 'number', 'boolean', 'booleanAttr', 'date'].forEach(createTypedBindable);
   /**
    * Used to allow user to automatically pickup property type
    * Can be used with typescript emit metadata in compiler settings, or with `Reflect.metadata('design:type', PropertyTypeClass)` decorator
