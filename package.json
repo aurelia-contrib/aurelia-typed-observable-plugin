@@ -1,6 +1,6 @@
 {
   "name": "aurelia-typed-observable-plugin",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "A plugin for @observable and @bindable value coercion ",
   "keywords": [
     "aurelia",
