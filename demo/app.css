@@ -1,0 +1,12 @@
+/* make the aurelia app root fill the whole screen as a decent starting point for flex / grid-based layouts */
+[aurelia-app="main"] {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* make router-view render like a div */
+router-view {
+  display: block;
+}

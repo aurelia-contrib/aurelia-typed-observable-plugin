@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "AureliaEffect.aurelia",
+    "behzad88.Aurelia",
+    "christian-kohler.path-intellisense",
+    "EditorConfig.EditorConfig",
+    "esbenp.prettier-vscode",
+    "joelday.docthis",
+    "steoates.autoimport"
+  ]
+}

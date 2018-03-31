@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>
+    <%- htmlWebpackPlugin.options.metadata.title %>
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="<%- htmlWebpackPlugin.options.metadata.baseUrl %>">
+  <!-- statically include semantic-ui from cdn for a nice basic set of styling - feel free to remove or replace with anything you like -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.css" />
+  <!-- imported CSS are concatenated and added automatically -->
+</head>
+
+<body aurelia-app="main">
+  <% if (htmlWebpackPlugin.options.metadata.server) { %>
+    <!-- Webpack Dev Server reload -->
+    <script src="/webpack-dev-server.js"></script>
+  <% } %>
+</body>
+
+</html>

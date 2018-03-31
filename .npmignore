@@ -1,0 +1,16 @@
+.vscode
+.rollupcache
+configs
+coverage
+node_modules
+src
+test
+.gitignore
+.editorconfig
+.gitattributes
+.npmignore
+karma.conf.ts
+package-scripts.js
+tsconfig.json
+tslint.json
+webpack.config.ts

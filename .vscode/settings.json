@@ -1,0 +1,19 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+  "typescript.tsdk": "./node_modules/typescript/lib",
+  "tslint.nodePath": "./node_modules/tslint/bin/tslint",
+  "html.suggest.angular1": false,
+  "html.suggest.ionic": false,
+  "html.format.endWithNewline": true,
+  "tslint.exclude": [
+    "**/node_modules/**",
+    "**/dist/**"
+  ],
+  "emmet.triggerExpansionOnTab": true,
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/doc": true,
+    "**/.vscode": true
+  }
+}

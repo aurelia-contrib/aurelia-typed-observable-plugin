@@ -1,0 +1,7 @@
+{
+  "extends": "./tsconfig-build.json",
+  "compilerOptions": {
+    "outDir": "../dist/es2017",
+    "target": "es2017"
+  }
+}

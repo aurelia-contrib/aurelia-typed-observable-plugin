@@ -1,0 +1,73 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    //"allowJs": false,
+    "allowSyntheticDefaultImports": true, //default:	module === "system" or --esModuleInterop
+    //"allowUnreachableCode": false,
+    //"allowUnusedLabels": false,
+    //"alwaysStrict": false,
+    //"baseUrl": "",
+    //"charset": "utf8",
+    //"checkJs": false,
+    //"declaration": false,
+    //"declarationDir": "",
+    //"diagnostics": false,
+    //"disableSizeLimit": false,
+    "downlevelIteration": true, //default: false
+    //"emitBOM": false,
+    "emitDecoratorMetadata": true, //default: false
+    "esModuleInterop": true, //default: false
+    "experimentalDecorators": true, //default: false
+    "forceConsistentCasingInFileNames": true, //default: false
+    //"importHelpers": false,
+    //"inlineSourceMap": false,
+    //"inlineSources": false,
+    //"jsxFactory": "React.createElement",
+    "lib": [
+      "dom",
+      "es2017"
+    ], //default: --target ES5: DOM,ES5,ScriptHost; --target ES6: DOM,ES6,DOM.Iterable,ScriptHost
+    //"listEmittedFiles": false,
+    //"listFiles": false,
+    //"mapRoot": "",
+    //"maxNodeModuleJsDepth": 0,
+    "module": "commonjs", //default: target === "ES3" or "ES5" ? "CommonJS" : "ES6"
+    "moduleResolution": "node", //default: module === "AMD" or "System" or "ES6" ? "Classic" : "Node",
+    "newLine": "lf", //default: (platform specific)
+    //"noEmit": false,
+    //"noEmitHelpers": false,
+    //"noEmitOnError": false,
+    //"noFallthroughCasesInSwitch": false,
+    //"noImplicitAny": false,
+    "noImplicitReturns": true, //default: false
+    //"noImplicitThis": false,
+    //"noImplicitUseStrict": false,
+    //"noLib": false,
+    //"noResolve": false,
+    //"noStrictGenericChecks": false,
+    //"noUnusedLocals": false,
+    //"noUnusedParameters": false,
+    //"outDir": "",
+    //"outFile": "",
+    //"paths": {},
+    "preserveConstEnums": true, //default: false
+    //"preserveSymlinks": false,
+    //"pretty": false,
+    //"removeComments": false,
+    //"rootDir": "",
+    //"rootDirs": [],
+    "skipLibCheck": true, //default: false
+    //"sourceMap": false,
+    //"sourceRoot": "",
+    //"strict": false,
+    //"strictFunctionTypes": false,
+    //"strictPropertyInitialization": false,
+    //"strictNullChecks": false,
+    //"stripInternal": false,
+    //"suppressExcessPropertyErrors": false,
+    "target": "es2015", //default: es3
+    //"traceResolution": false,
+    //"typeRoots": [],
+    //"watch": false
+  }
+}
