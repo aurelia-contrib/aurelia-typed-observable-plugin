@@ -2,6 +2,7 @@
 .rollupcache
 configs
 coverage
+demo
 node_modules
 src
 test
@@ -11,6 +12,7 @@ test
 .npmignore
 karma.conf.ts
 package-scripts.js
+rollup.config.js
 tsconfig.json
 tslint.json
 webpack.config.ts

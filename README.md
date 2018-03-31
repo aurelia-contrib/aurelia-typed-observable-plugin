@@ -18,8 +18,10 @@ import { bindable, observable } from 'aurelia-typed-observable-plugin';
 ```
 
 The two decorators are drop-in replacement for built-in decorators of `Aurelia`, no extra work needed to use them beside importing them from this plugin.
+This plugin is an attempt to request for comment from anyone who interested in the features feature. It was originally intended to be part of the core, but
+there is concern it would be hard to support down the road. You can find original PR at `aurelia-binding` (https://github.com/aurelia/binding/pull/623) and `aurelia-templating` (https://github.com/aurelia/templating/pull/558)
 
-## Most popular uscase
+## Most common usecase
 
   * Boolean bindable properties to make custom elements behave like buit in boolean:
 
@@ -99,7 +101,24 @@ instance.num = '4';
 instance.num; // <===== 4 , with compile error though
 ```
 
-Instruction for the compiler to emit decorator metadata [TypeScript decorator doc](https://www.typescriptlang.org/docs/handbook/decorators.html)
+#### ---- steps **For using metadata**:
+
+  1. Enable emit decorator metadata, instruction: Instruction for the compiler to emit decorator metadata [TypeScript decorator doc](https://www.typescriptlang.org/docs/handbook/decorators.html)
+
+  2. Enable property type flag for each deorator, as by default, it is off to avoid breaking your code when opt-ed in, like following:
+
+      ```js
+      import {
+        usePropertyTypeForBindable,
+        usePropertyTypeForObservable
+      } from 'aurelia-typed-observable-plugin';
+
+      usePropertyTypeForBindable(true);
+      usePropertyTypeForObservable(true);
+      ```
+
+      They are only needed to be called once.
+
 
 ## Extension
 
