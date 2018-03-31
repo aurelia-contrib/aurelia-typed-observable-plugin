@@ -1,7 +1,6 @@
 {
   "extends": "./configs/tsconfig-projectroot.json",
   "compilerOptions": {
-    "noImplicitReturns": false,
     "declaration": true,
     "declarationDir": "dist/types"
   }

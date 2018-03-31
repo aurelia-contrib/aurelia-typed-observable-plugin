@@ -39,7 +39,7 @@ export const observable: IObservableDecorator = function observable(nameOrTarget
    * @param descriptor class field descriptor
    * @param config user's config
    */
-  function deco(target: Function, key?: string, descriptor?: PropertyDescriptor & { initializer?(): any }, config?: string | IPropertyDecoratorConfig) {
+  function deco(target: Function, key?: string, descriptor?: PropertyDescriptor & { initializer?(): any }, config?: string | IPropertyDecoratorConfig): any {
     // Used to check if we should pickup the type from metadata
     let coerce: string | ICoerceFunction | undefined = config === undefined || typeof config === 'string' ? undefined : config.coerce;
     let propType: Function | undefined;
