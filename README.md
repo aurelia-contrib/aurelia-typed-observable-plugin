@@ -19,6 +19,46 @@ import { bindable, observable } from 'aurelia-typed-observable-plugin';
 
 The two decorators are drop-in replacement for built-in decorators of `Aurelia`, no extra work needed to use them beside importing them from this plugin.
 
+## Most popular uscase
+
+  * Boolean bindable properties to make custom elements behave like buit in boolean:
+
+  ```js
+    // view model
+    export class VideoPlayer {
+
+      // do it yourself
+      @bindable({
+        coerce(val) {
+          if (val || val === '') {
+            return true;
+          }
+          return false;
+        }
+      })
+      playing
+
+      // or use built in
+      @bindable.booleanAttr
+      playing
+    }
+  ```
+
+  All of the following, will be converted to true, which matches native behavior.
+
+  ```html
+    <!-- app.html -->
+    <template>
+      <video-player playing></video-player>
+      <video-player playing=''></video-player>
+      <video-player playing='true'></video-player>
+      <video-player playing='playing'></video-player>
+
+      <!-- instead of specifying command to make it a boolean -->
+      <video-player playing.bind='true'></video-player>
+    </template>
+  ```
+
 ## Usage
 
 **With normal syntax**
@@ -66,7 +106,7 @@ Instruction for the compiler to emit decorator metadata [TypeScript decorator do
 All coerce type will be resolved to a string, which then is used to get the converter function in `coerceFunctions` export of this module. So, to extend or modify basic implementations:
 
 ```js
-import {coerceFunctions} from 'aurelia-binding';
+import {coerceFunctions} from 'aurelia-typed-observable-plugin';
 
 // Modify built in
 coerceFunctions.string = function(a) {
@@ -90,7 +130,7 @@ For TS users or JS users who want to use metadata, to extend coerce mapping:
 ```ts
 import {
   createTypedObservable
-} from 'aurelia-binding';
+} from 'aurelia-typed-observable-plugin';
 
 // use static class method
 class Point {
@@ -145,7 +185,7 @@ To built your own fluent syntax observable:
 import {
   coerceFunctions,
   createTypedObservable
-} from 'aurelia-binding'
+} from 'aurelia-typed-observable-plugin'
 
 coerceFunctions.point = function(value) {
   return value.split(' ').map(parseFloat);

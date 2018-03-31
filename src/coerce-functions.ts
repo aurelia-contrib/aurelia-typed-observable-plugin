@@ -14,6 +14,9 @@ export const coerceFunctions: Record<string, (val: any) => any> = {
   boolean(a: any) {
     return !!a;
   },
+  booleanAttr(val: any) {
+    return val || val === '' ? true : false;
+  },
   date(val: any) {
     // Invalid date instances are quite problematic
     // so we need to deal with it properly by default

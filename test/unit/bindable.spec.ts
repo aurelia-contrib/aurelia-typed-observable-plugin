@@ -101,6 +101,7 @@ describe('coerce', () => {
     const cases = [
       { type: 'number', baseValue: '123', satisfy: (val: any) => val === 123 },
       { type: 'boolean', baseValue: 1, satisfy: (val: any) => val === true },
+      { type: 'booleanAttr', baseValue: '', satisfy: (val: any) => val === true },
       { type: 'date', baseValue: '2017-09-26', satisfy: (val: any) => val instanceof Date && val.getDate() === 26 && val.getMonth() === 8 && val.getFullYear() === 2017 },
       { type: 'string', baseValue: 123, satisfy: (val: any) => val === '123' }
     ];

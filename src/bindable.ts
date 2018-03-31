@@ -110,7 +110,7 @@ export const bindable: IBindableDecorator = function bindable(
   return deco;
 } as IBindableDecorator;
 
-['string', 'number', 'boolean', 'date'].forEach(createTypedBindable);
+['string', 'number', 'boolean', 'booleanAttr', 'date'].forEach(createTypedBindable);
 
 /**
  * Used to allow user to automatically pickup property type
