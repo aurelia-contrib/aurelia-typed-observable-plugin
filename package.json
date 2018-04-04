@@ -10,9 +10,9 @@
     "typed-observable",
     "typed-bindable"
   ],
-  "homepage": "https://github.com/fkleuver/aurelia-typed-observable-plugin",
+  "homepage": "https://github.com/bigopon/aurelia-typed-observable-plugin",
   "bugs": {
-    "url": "https://github.com/fkleuver/aurelia-typed-observable-plugin/issues"
+    "url": "https://github.com/bigopon/aurelia-typed-observable-plugin/issues"
   },
   "license": "MIT",
   "author": "bigopon <bigopon.777@gmail.com>",
@@ -20,7 +20,7 @@
   "typings": "dist/types/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/fkleuver/aurelia-typed-observable-plugin"
+    "url": "https://github.com/bigopon/aurelia-typed-observable-plugin"
   },
   "scripts": {
     "lint": "cross-env ./node_modules/.bin/nps lint",
