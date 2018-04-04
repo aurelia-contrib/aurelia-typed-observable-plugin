@@ -24,6 +24,7 @@ export interface IBindableDecorator<T = any> extends IBindableDecoratorFunction<
   number: IBindableDecoratorFunction<number>;
   boolean: IBindableDecoratorFunction<boolean>;
   date: IBindableDecoratorFunction<Date>;
+  booleanAttr: IBindableDecoratorFunction<boolean>;
   [type: string]: IBindableDecoratorFunction;
 }
 

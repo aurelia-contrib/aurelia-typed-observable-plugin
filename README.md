@@ -2,9 +2,9 @@
 
 A plugin that provides enhanced `@bindable` and `@observable` decorators for Aurelia applications
 
-  * Provides coercion support for decorator `@observable`
+  * Provides coercion support for decorator `@observable`, `@bindable`
   * Provides ability to create custom `@observable` with fluent syntax: `@observable.custom` / `@observable.custom()`
-  * provide 4 base custom observables: `@observable.date`, `@observable.number`, `@observable.string`, `@observable.boolean`
+  * provide 4 base custom observables: `@observable.date`, `@observable.number`, `@observable.string`, `@observable.boolean`, 5 for `@bindable` with extra built-in: `@bindable.booleanAttr`
 
 ## Installation & Reminder
 
