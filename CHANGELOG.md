@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.5"></a>
+## [0.3.5](https://github.com/bigopon/aurelia-typed-observable-plugin/compare/v0.3.4...v0.3.5) (2018-04-26)
+
+
+### Bug Fixes
+
+* **custom:** export createTypedBindable/ observable ([aa9b655](https://github.com/bigopon/aurelia-typed-observable-plugin/commit/aa9b655))
+
+
+
 <a name="0.3.4"></a>
 ## [0.3.4](https://github.com/bigopon/aurelia-typed-observable-plugin/compare/v0.3.3...v0.3.4) (2018-04-04)
 

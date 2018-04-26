@@ -501,4 +501,4 @@ function createTypedObservable(type) {
     };
 }
 
-export { bindable, usePropertyType as usePropertyTypeForBindable, observable, usePropertyType$1 as usePropertyTypeForObservable, coerceFunctions, coerceFunctionMap, mapCoerceFunction };
+export { bindable, usePropertyType as usePropertyTypeForBindable, createTypedBindable, observable, usePropertyType$1 as usePropertyTypeForObservable, createTypedObservable, coerceFunctions, coerceFunctionMap, mapCoerceFunction };

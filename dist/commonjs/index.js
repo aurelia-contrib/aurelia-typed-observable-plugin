@@ -507,8 +507,10 @@ function createTypedObservable(type) {
 
 exports.bindable = bindable;
 exports.usePropertyTypeForBindable = usePropertyType;
+exports.createTypedBindable = createTypedBindable;
 exports.observable = observable;
 exports.usePropertyTypeForObservable = usePropertyType$1;
+exports.createTypedObservable = createTypedObservable;
 exports.coerceFunctions = coerceFunctions;
 exports.coerceFunctionMap = coerceFunctionMap;
 exports.mapCoerceFunction = mapCoerceFunction;
