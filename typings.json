@@ -1,0 +1,4 @@
+{
+    "name": "aurelia-typed-observable-plugin",
+    "main": "dist/types/index.d.ts"
+}
