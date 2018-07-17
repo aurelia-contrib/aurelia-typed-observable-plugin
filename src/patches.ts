@@ -1,10 +1,9 @@
-import { BindableProperty, HtmlBehaviorResource, BehaviorPropertyObserver } from 'aurelia-templating';
-import { TaskQueue } from 'aurelia-task-queue';
+// tslint:disable: interface-name no-invalid-this no-non-null-assertion
 import * as LogManager from 'aurelia-logging';
-
-import { ICoerceFunction } from './interfaces';
+import { TaskQueue } from 'aurelia-task-queue';
+import { BehaviorPropertyObserver, BindableProperty, HtmlBehaviorResource } from 'aurelia-templating';
 import { coerceFunctions } from './coerce-functions';
-
+import { ICoerceFunction } from './interfaces';
 
 declare module 'aurelia-templating' {
   interface BehaviorPropertyObserver {
@@ -44,14 +43,14 @@ interface ExtendedBindableProperty extends BindableProperty {
   owner: HtmlBehaviorResource & { taskQueue: TaskQueue };
 }
 
-BehaviorPropertyObserver.prototype.setCoerce = function(coerce: string | ICoerceFunction) {
+BehaviorPropertyObserver.prototype.setCoerce = function(coerce: string | ICoerceFunction): void {
   this.coerce = typeof coerce === 'function' ? coerce : coerceFunctions[coerce];
   if (this.coerce === undefined) {
     LogManager
       .getLogger('behavior-property-observer')
       .warn(`Invalid coerce instruction. Should be either one of ${Object.keys(coerceFunctions)} or a function.`);
   }
-}
+};
 
 /**
  * Slightly override the builtin implementation that will handle coercion
@@ -59,7 +58,7 @@ BehaviorPropertyObserver.prototype.setCoerce = function(coerce: string | ICoerce
 BehaviorPropertyObserver.prototype.setValue = function(
   this: BehaviorPropertyObserver & ExtendedBehaviorPropertyObserver,
   newValue: any
-) {
+): void {
   const oldValue = this.currentValue;
   const coercedValue = this.coerce === undefined ? newValue : this.coerce(newValue);
 
@@ -83,9 +82,9 @@ BindableProperty.prototype.createObserver = function(
   viewModel: any
 ): BehaviorPropertyObserver {
   let selfSubscriber: Function | null = null;
-  let defaultValue = this.defaultValue;
-  let changeHandlerName = this.changeHandler;
-  let name = this.name;
+  const defaultValue = this.defaultValue;
+  const changeHandlerName = this.changeHandler;
+  const name = this.name;
   let initialValue;
 
   if ((this as any).hasOptions) {
@@ -111,11 +110,18 @@ BindableProperty.prototype.createObserver = function(
     initialValue = typeof defaultValue === 'function' ? defaultValue.call(viewModel) : defaultValue;
   }
 
-  let observer: ExtendedBehaviorPropertyObserver = new BehaviorPropertyObserver(this.owner.taskQueue, viewModel, this.name, selfSubscriber!, initialValue) as any;
+  const observer: ExtendedBehaviorPropertyObserver = new BehaviorPropertyObserver(
+    this.owner.taskQueue,
+    viewModel,
+    this.name,
+    selfSubscriber!,
+    initialValue
+  ) as any;
   if (this.coerce !== undefined) {
     observer.setCoerce(this.coerce);
     observer.currentValue = observer.oldValue = observer.coerce === undefined ? observer.currentValue : observer.coerce(initialValue);
   }
+
   return observer;
 };
 
@@ -127,8 +133,8 @@ BindableProperty.prototype.createObserver = function(
   name: string,
   attribute: string | { createBinding(viewModel: any): any },
   boundProperties: any[]
-) {
-  let changeHandlerName = name + 'Changed';
+): void {
+  const changeHandlerName = `${name}Changed`;
   let selfSubscriber: Function | null = null;
   let observer: ExtendedBehaviorPropertyObserver;
   let info;

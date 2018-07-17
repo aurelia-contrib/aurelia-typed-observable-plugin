@@ -14,7 +14,11 @@
     "no-eval": true,
     "no-exec-script": true,
     "no-function-constructor-with-string-args": true,
-    "no-http-string": [true, "http://www.example.com/?.*", "http://www.examples.com/?.*"],
+    "no-http-string": [
+      true,
+      "http://www.example.com/?.*",
+      "http://www.examples.com/?.*"
+    ],
     "no-inner-html": true,
     "no-octal-literal": true,
     "no-reserved-keywords": true,
@@ -26,7 +30,6 @@
     "react-anchor-blank-noopener": true,
     "react-iframe-missing-sandbox": true,
     "react-no-dangerous-html": true,
-
     /**
      * Common Bugs and Correctness. The following rules should be turned on because they find
      * common bug patterns in the code or enforce type safety.
@@ -43,7 +46,15 @@
     "no-backbone-get-set-outside-model": true,
     "no-bitwise": false, // fkleuver: we need bitwise and we know what we're doing..
     "no-conditional-assignment": true,
-    "no-console": [true, "debug", "info", "log", "time", "timeEnd", "trace"],
+    "no-console": [
+      true,
+      "debug",
+      "info",
+      "log",
+      "time",
+      "timeEnd",
+      "trace"
+    ],
     "no-constant-condition": true,
     "no-control-regex": true,
     "no-debugger": true,
@@ -92,19 +103,24 @@
       "allow-string",
       "allow-number",
       "allow-mix"
-      ], // fkleuver: allowing these is a productivity tradeoff between time spent looking for bugs caused by unintentional uses, and time saved by writing shorter code
+    ], // fkleuver: allowing these is a productivity tradeoff between time spent looking for bugs caused by unintentional uses, and time saved by writing shorter code
     "switch-default": true,
     "switch-final-break": true,
-    "triple-equals": [true, "allow-null-check"],
+    "triple-equals": [
+      true,
+      "allow-null-check"
+    ],
     "use-isnan": true,
     "use-named-parameter": true,
-
     /**
      * Code Clarity. The following rules should be turned on because they make the code
      * generally more clear to the reader.
      */
     "adjacent-overload-signatures": true,
-    "array-type": [true, "array"],
+    "array-type": [
+      true,
+      "array"
+    ],
     "arrow-parens": false, // for simple functions the parens on arrow functions are not needed
     "ban-comma-operator": true, // possibly controversial
     "binary-expression-operand-order": true,
@@ -113,18 +129,38 @@
     "chai-vague-errors": true,
     "class-name": true,
     "comment-format": true,
-    "completed-docs": [true, "classes"],
+    "completed-docs": [
+      true,
+      "classes"
+    ],
     "export-name": false, // fkleuver: impractical for aurelia projects due to naming conventions for exported html resources, features, etc
     "function-name": true,
     "import-name": true,
     "interface-name": true,
     "jsdoc-format": true,
-    "max-classes-per-file": [true, 3], // we generally recommend making one public class per file
+    "max-classes-per-file": [
+      true,
+      3
+    ], // we generally recommend making one public class per file
     "max-file-line-count": true,
-    "max-func-body-length": [true, 100, { "ignore-parameters-to-function-regex": "describe" }],
-    "max-line-length": [true, 140],
+    "max-func-body-length": [
+      true,
+      100,
+      {
+        "ignore-parameters-to-function-regex": "describe"
+      }
+    ],
+    "max-line-length": [
+      true,
+      140
+    ],
     "member-access": true,
-    "member-ordering": [true, { "order": "fields-first" }],
+    "member-ordering": [
+      true,
+      {
+        "order": "fields-first"
+      }
+    ],
     "missing-jsdoc": false, // fkleuver: we don't want to enforce documentation on every single file (due to aurelia conventions being fairly self-explanatory), furthermore, for internal projects code ought to be written in such a way that it documents itself, whilst applying common sense to document critical and/or complex parts of the application
     "mocha-unneeded-done": true,
     "new-parens": true,
@@ -133,7 +169,7 @@
     "no-duplicate-imports": true,
     "no-empty-interface": true,
     "no-for-in": true,
-    "no-function-expression": true,
+    "no-function-expression": false,
     "no-inferrable-types": false, // turn no-inferrable-types off in order to make the code consistent in its use of type decorations
     "no-multiline-string": true, // multiline-strings often introduce unnecessary whitespace into the string literals
     "no-null-keyword": false, // turn no-null-keyword off and use undefined to mean not initialized and null to mean without a value
@@ -181,8 +217,12 @@
     "underscore-consistent-invocation": true,
     "unified-signatures": true,
     "use-default-type-parameter": true,
-    "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore"], // fkleuver: allowing leading underscore allows for pragmatic enforcement of compiler rule "no-unused-locals"
-
+    "variable-name": [
+      true,
+      "ban-keywords",
+      "check-format",
+      "allow-leading-underscore"
+    ], // fkleuver: allowing leading underscore allows for pragmatic enforcement of compiler rule "no-unused-locals"
     /**
      * Accessibility. The following rules should be turned on to guarantee the best user
      * experience for keyboard and screen reader users.
@@ -201,17 +241,24 @@
     "react-a11y-role-supports-aria-props": true,
     "react-a11y-tabindex-no-positive": true,
     "react-a11y-titles": true,
-
     /**
      * Whitespace related rules. The only recommended whitespace strategy is to pick a single format and
      * be consistent.
      */
-    "align": [true, "parameters", "arguments", "statements"],
+    "align": [
+      true,
+      "parameters",
+      "arguments",
+      "statements"
+    ],
     "curly": true,
     "encoding": true,
     "eofline": true,
     "import-spacing": true,
-    "indent": [true, "spaces"],
+    "indent": [
+      true,
+      "spaces"
+    ],
     "linebreak-style": true,
     "newline-before-return": true,
     "no-consecutive-blank-lines": true,
@@ -220,18 +267,45 @@
     "no-single-line-block-comment": true,
     "no-trailing-whitespace": true,
     "no-unnecessary-semicolons": true,
-    "object-literal-key-quotes": [true, "consistent"], // fkleuver: either all or none, makes for more readable (and pleasant to look at) code
-    "one-line": [true, "check-open-brace", "check-catch", "check-else", "check-whitespace"],
-    "quotemark": [true, "double"],
-    "semicolon": [true, "always"],
+    "object-literal-key-quotes": [
+      true,
+      "consistent"
+    ], // fkleuver: either all or none, makes for more readable (and pleasant to look at) code
+    "one-line": [
+      true,
+      "check-open-brace",
+      "check-catch",
+      "check-else",
+      "check-whitespace"
+    ],
+    "quotemark": [
+      true,
+      "single"
+    ],
+    "semicolon": [
+      true,
+      "always"
+    ],
     "space-within-parens": true,
-    "trailing-comma": [true, { "singleline": "never", "multiline": "never" }], // forcing trailing commas for multi-line
+    "trailing-comma": [
+      true,
+      {
+        "singleline": "never",
+        "multiline": "never"
+      }
+    ], // forcing trailing commas for multi-line
     // lists results in lists that are easier to reorder and version control diffs that are more clear.
     // Many teams like to have multiline be 'always'. There is no clear consensus on this rule but the
     // internal MS JavaScript coding standard does discourage it.
     "typedef-whitespace": false,
-    "whitespace": [true, "check-branch", "check-decl", "check-operator", "check-separator", "check-type"],
-
+    "whitespace": [
+      true,
+      "check-branch",
+      "check-decl",
+      "check-operator",
+      "check-separator",
+      "check-type"
+    ],
     /**
      * Controversial/Configurable rules.
      */
@@ -256,7 +330,6 @@
     "prefer-type-cast": false, // pick either type-cast format and use it consistently // fkleuver: as-cast seems to be the most popular flavor at the moment, and I suppose with a purely style preference thing such as this, it's best to just go mainstream
     "return-undefined": false, // this actually affect the readability of the code
     "space-before-function-paren": false, // turn this on if this is really your coding standard
-
     /**
      * Deprecated rules.  The following rules are deprecated for various reasons.
      */
@@ -274,5 +347,5 @@
     "valid-typeof": true
   },
   "rulesDirectory": "node_modules/tslint-microsoft-contrib",
-	"defaultSeverity": "warning"
+  "defaultSeverity": "warning"
 }

@@ -1,8 +1,8 @@
-import { metadata } from 'aurelia-metadata';
+// tslint:disable: no-reserved-keywords no-function-expressions no-parameter-reassignment no-import-side-effect callable-types
 import { bindingMode } from 'aurelia-binding';
 import * as LogManager from 'aurelia-logging';
+import { metadata } from 'aurelia-metadata';
 import { BindableProperty, HtmlBehaviorResource } from 'aurelia-templating';
-
 import { coerceFunctionMap, coerceFunctions } from './coerce-functions';
 import { IPropertyDecoratorConfig, IPropertyDecoratorFunction } from './interfaces';
 import './patches';
@@ -12,7 +12,7 @@ let _usePropertyType = false;
 export interface IBindablePropertyConfig<T = any> extends IPropertyDecoratorConfig<T> {
   attribute?: string;
   defaultBindingMode?: bindingMode;
-  reflectToAttribute?: boolean | { (el: Element, name: string, newVal: any, oldVal: any): any },
+  reflectToAttribute?: boolean | { (el: Element, name: string, newVal: any, oldVal: any): any };
 }
 
 export interface IBindableDecoratorFunction<T = any> extends IPropertyDecoratorFunction<T> {
@@ -34,18 +34,19 @@ export interface IBindableDecorator<T = any> extends IBindableDecoratorFunction<
  * This has Object in its type to avoid breaking change.
  * Idealy it should be `string | BindablePropertyConfig`
  */
+// tslint:disable-next-line:no-shadowed-variable
 export const bindable: IBindableDecorator = function bindable(
   nameOrTargetOrConfig?: string | object | IBindablePropertyConfig,
   key?: string,
   descriptor?: PropertyDescriptor
 ): any {
-  let deco = function(target: Function, key2?: string, descriptor2?: PropertyDescriptor) {
+  const deco = function(target: Function, key2?: string, descriptor2?: PropertyDescriptor): any {
     /**
      * key2 = truthy => decorated on a class field
      * key2 = falsy => decorated on a class
      */
-    let actualTarget = key2 ? target.constructor : target;
-    let r = metadata.getOrCreateOwn(metadata.resource, HtmlBehaviorResource, actualTarget) as HtmlBehaviorResource;
+    const actualTarget = key2 ? target.constructor : target;
+    const r = metadata.getOrCreateOwn(metadata.resource, HtmlBehaviorResource, actualTarget) as HtmlBehaviorResource;
     let prop: BindableProperty;
     let propType: Function;
 
@@ -73,6 +74,7 @@ export const bindable: IBindableDecorator = function bindable(
     }
 
     prop = new BindableProperty((nameOrTargetOrConfig as IBindablePropertyConfig));
+
     return prop.registerWith(actualTarget, r, descriptor2);
   };
 
@@ -97,8 +99,9 @@ export const bindable: IBindableDecorator = function bindable(
      * }
      *
      */
-    let target = nameOrTargetOrConfig;
+    const target = nameOrTargetOrConfig;
     nameOrTargetOrConfig = undefined;
+
     return deco(target as Function, key, descriptor);
   }
 
@@ -117,9 +120,9 @@ export const bindable: IBindableDecorator = function bindable(
  * Used to allow user to automatically pickup property type
  * Can be used with typescript emit metadata in compiler settings, or with `Reflect.metadata('design:type', PropertyTypeClass)` decorator
  */
-export function usePropertyType(shouldUsePropertyType: boolean) {
+export function usePropertyType(shouldUsePropertyType: boolean): void {
   _usePropertyType = shouldUsePropertyType;
-};
+}
 
 /**
  * Create a new fluent syntax bindable decorator  ex: builtin: `@bindable.string`, custom: `@bindable.customType`
@@ -141,13 +144,17 @@ export function usePropertyType(shouldUsePropertyType: boolean) {
  *
  * @param type The type to added to bindable for fluent syntax.
  */
-export function createTypedBindable(type: string) {
+export function createTypedBindable(type: string): any {
   /**
    * There no attempts to protect user from mis-using the decorators.
    * ex. @observable({}, accidentParam) class SomeClass {}
    * If we have some flag to use in if block, which can be remove at build time, it would be great.
    */
-  return (bindable as any)[type] = function(nameOrTargetOrConfig?: string | object | IBindablePropertyConfig, key?: string, descriptor?: PropertyDescriptor) {
+  return (bindable as any)[type] = function(
+    nameOrTargetOrConfig?: string | object | IBindablePropertyConfig,
+    key?: string,
+    descriptor?: PropertyDescriptor
+  ): any {
     if (nameOrTargetOrConfig === undefined) {
       /**
        * MyClass {
@@ -171,14 +178,15 @@ export function createTypedBindable(type: string) {
        */
       nameOrTargetOrConfig = typeof nameOrTargetOrConfig === 'string' ? { name: nameOrTargetOrConfig } : nameOrTargetOrConfig;
       (nameOrTargetOrConfig as IBindablePropertyConfig).coerce = type;
+
       return bindable(nameOrTargetOrConfig);
     }
-    // nameOrTargetOrConfig = typeof nameOrTargetOrConfig === 'string' ? { name: nameOrTargetOrConfig } : nameOrTargetOrConfig;
+
     /**
      * class MyClass {
      *   @bindable.number num
      * }
      */
     return bindable({ coerce: type })(nameOrTargetOrConfig, key, descriptor);
-  }
+  };
 }
