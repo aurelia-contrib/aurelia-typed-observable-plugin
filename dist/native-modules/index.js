@@ -1,5 +1,5 @@
 import { getLogger } from 'aurelia-logging';
-import { BindableProperty, BehaviorPropertyObserver, HtmlBehaviorResource } from 'aurelia-templating';
+import { BehaviorPropertyObserver, BindableProperty, HtmlBehaviorResource } from 'aurelia-templating';
 import { metadata } from 'aurelia-metadata';
 
 var coerceFunctions = {
@@ -51,6 +51,7 @@ function mapCoerceFunction(type, strType, coerceFunction) {
     coerceFunctionMap.set(type, strType);
 }
 
+// tslint:disable: interface-name no-invalid-this no-non-null-assertion
 BehaviorPropertyObserver.prototype.setCoerce = function (coerce) {
     this.coerce = typeof coerce === 'function' ? coerce : coerceFunctions[coerce];
     if (this.coerce === undefined) {
@@ -115,7 +116,7 @@ BindableProperty.prototype.createObserver = function (viewModel) {
     return observer;
 };
 BindableProperty.prototype._createDynamicProperty = function (viewModel, observerLookup, behaviorHandlesBind, name, attribute, boundProperties) {
-    var changeHandlerName = name + 'Changed';
+    var changeHandlerName = name + "Changed";
     var selfSubscriber = null;
     var observer;
     var info;
@@ -164,6 +165,7 @@ var _usePropertyType = false;
  * This has Object in its type to avoid breaking change.
  * Idealy it should be `string | BindablePropertyConfig`
  */
+// tslint:disable-next-line:no-shadowed-variable
 var bindable = function bindable(nameOrTargetOrConfig, key, descriptor) {
     var deco = function (target, key2, descriptor2) {
         /**
@@ -290,7 +292,6 @@ function createTypedBindable(type) {
             nameOrTargetOrConfig.coerce = type;
             return bindable(nameOrTargetOrConfig);
         }
-        // nameOrTargetOrConfig = typeof nameOrTargetOrConfig === 'string' ? { name: nameOrTargetOrConfig } : nameOrTargetOrConfig;
         /**
          * class MyClass {
          *   @bindable.number num

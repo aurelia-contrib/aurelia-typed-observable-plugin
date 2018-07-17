@@ -49,6 +49,7 @@ define('aurelia-typed-observable-plugin', ['exports', 'aurelia-logging', 'aureli
       coerceFunctionMap.set(type, strType);
   }
 
+  // tslint:disable: interface-name no-invalid-this no-non-null-assertion
   aureliaTemplating.BehaviorPropertyObserver.prototype.setCoerce = function (coerce) {
       this.coerce = typeof coerce === 'function' ? coerce : coerceFunctions[coerce];
       if (this.coerce === undefined) {
@@ -113,7 +114,7 @@ define('aurelia-typed-observable-plugin', ['exports', 'aurelia-logging', 'aureli
       return observer;
   };
   aureliaTemplating.BindableProperty.prototype._createDynamicProperty = function (viewModel, observerLookup, behaviorHandlesBind, name, attribute, boundProperties) {
-      var changeHandlerName = name + 'Changed';
+      var changeHandlerName = name + "Changed";
       var selfSubscriber = null;
       var observer;
       var info;
@@ -162,6 +163,7 @@ define('aurelia-typed-observable-plugin', ['exports', 'aurelia-logging', 'aureli
    * This has Object in its type to avoid breaking change.
    * Idealy it should be `string | BindablePropertyConfig`
    */
+  // tslint:disable-next-line:no-shadowed-variable
   var bindable = function bindable(nameOrTargetOrConfig, key, descriptor) {
       var deco = function (target, key2, descriptor2) {
           /**
@@ -288,7 +290,6 @@ define('aurelia-typed-observable-plugin', ['exports', 'aurelia-logging', 'aureli
               nameOrTargetOrConfig.coerce = type;
               return bindable(nameOrTargetOrConfig);
           }
-          // nameOrTargetOrConfig = typeof nameOrTargetOrConfig === 'string' ? { name: nameOrTargetOrConfig } : nameOrTargetOrConfig;
           /**
            * class MyClass {
            *   @bindable.number num

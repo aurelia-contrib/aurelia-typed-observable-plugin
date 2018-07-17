@@ -1,5 +1,5 @@
 import { getLogger } from 'aurelia-logging';
-import { BindableProperty, BehaviorPropertyObserver, HtmlBehaviorResource } from 'aurelia-templating';
+import { BehaviorPropertyObserver, BindableProperty, HtmlBehaviorResource } from 'aurelia-templating';
 import { metadata } from 'aurelia-metadata';
 
 const coerceFunctions = {
@@ -51,6 +51,7 @@ function mapCoerceFunction(type, strType, coerceFunction) {
     coerceFunctionMap.set(type, strType);
 }
 
+// tslint:disable: interface-name no-invalid-this no-non-null-assertion
 BehaviorPropertyObserver.prototype.setCoerce = function (coerce) {
     this.coerce = typeof coerce === 'function' ? coerce : coerceFunctions[coerce];
     if (this.coerce === undefined) {
@@ -80,9 +81,9 @@ BehaviorPropertyObserver.prototype.setValue = function (newValue) {
 };
 BindableProperty.prototype.createObserver = function (viewModel) {
     let selfSubscriber = null;
-    let defaultValue = this.defaultValue;
-    let changeHandlerName = this.changeHandler;
-    let name = this.name;
+    const defaultValue = this.defaultValue;
+    const changeHandlerName = this.changeHandler;
+    const name = this.name;
     let initialValue;
     if (this.hasOptions) {
         return undefined;
@@ -107,7 +108,7 @@ BindableProperty.prototype.createObserver = function (viewModel) {
     if (defaultValue !== undefined) {
         initialValue = typeof defaultValue === 'function' ? defaultValue.call(viewModel) : defaultValue;
     }
-    let observer = new BehaviorPropertyObserver(this.owner.taskQueue, viewModel, this.name, selfSubscriber, initialValue);
+    const observer = new BehaviorPropertyObserver(this.owner.taskQueue, viewModel, this.name, selfSubscriber, initialValue);
     if (this.coerce !== undefined) {
         observer.setCoerce(this.coerce);
         observer.currentValue = observer.oldValue = observer.coerce === undefined ? observer.currentValue : observer.coerce(initialValue);
@@ -115,7 +116,7 @@ BindableProperty.prototype.createObserver = function (viewModel) {
     return observer;
 };
 BindableProperty.prototype._createDynamicProperty = function (viewModel, observerLookup, behaviorHandlesBind, name, attribute, boundProperties) {
-    let changeHandlerName = name + 'Changed';
+    const changeHandlerName = `${name}Changed`;
     let selfSubscriber = null;
     let observer;
     let info;
@@ -164,14 +165,15 @@ let _usePropertyType = false;
  * This has Object in its type to avoid breaking change.
  * Idealy it should be `string | BindablePropertyConfig`
  */
+// tslint:disable-next-line:no-shadowed-variable
 const bindable = function bindable(nameOrTargetOrConfig, key, descriptor) {
-    let deco = function (target, key2, descriptor2) {
+    const deco = function (target, key2, descriptor2) {
         /**
          * key2 = truthy => decorated on a class field
          * key2 = falsy => decorated on a class
          */
-        let actualTarget = key2 ? target.constructor : target;
-        let r = metadata.getOrCreateOwn(metadata.resource, HtmlBehaviorResource, actualTarget);
+        const actualTarget = key2 ? target.constructor : target;
+        const r = metadata.getOrCreateOwn(metadata.resource, HtmlBehaviorResource, actualTarget);
         let prop;
         let propType;
         if (key2) { //is it on a property or a class?
@@ -218,7 +220,7 @@ const bindable = function bindable(nameOrTargetOrConfig, key, descriptor) {
          * }
          *
          */
-        let target = nameOrTargetOrConfig;
+        const target = nameOrTargetOrConfig;
         nameOrTargetOrConfig = undefined;
         return deco(target, key, descriptor);
     }
@@ -290,7 +292,6 @@ function createTypedBindable(type) {
             nameOrTargetOrConfig.coerce = type;
             return bindable(nameOrTargetOrConfig);
         }
-        // nameOrTargetOrConfig = typeof nameOrTargetOrConfig === 'string' ? { name: nameOrTargetOrConfig } : nameOrTargetOrConfig;
         /**
          * class MyClass {
          *   @bindable.number num

@@ -50,4 +50,4 @@ export declare function usePropertyType(shouldUsePropertyType: boolean): void;
  *
  * @param type The type to added to bindable for fluent syntax.
  */
-export declare function createTypedBindable(type: string): (nameOrTargetOrConfig?: string | object | IBindablePropertyConfig<any> | undefined, key?: string | undefined, descriptor?: PropertyDescriptor | undefined) => any;
+export declare function createTypedBindable(type: string): any;
