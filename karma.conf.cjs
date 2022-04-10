@@ -1,26 +1,13 @@
-import * as karma from "karma";
-import * as path from "path";
-import * as webpack from "webpack";
+const path = require('path');
 
-export interface IKarmaConfig extends karma.Config, IKarmaConfigOptions {
-  transpileOnly?: boolean;
-  noInfo?: boolean;
-  coverage?: boolean;
-  tsconfig?: string;
-  set(config: IKarmaConfigOptions): void;
-}
+export default
+/**
+ * @param {import('karma').Config} config
+ */
+(config) => {
 
-export interface IKarmaConfigOptions extends karma.ConfigOptions {
-  webpack: webpack.Configuration;
-  coverageIstanbulReporter?: any;
-  webpackServer: any;
-  customLaunchers: any;
-}
-
-export default (config: IKarmaConfig): void => {
-  const rules: webpack.Rule[] = [];
-
-  const options: IKarmaConfigOptions = {
+  /** @type {import('karma').ConfigOptions} */
+  const options = {
     basePath: config.basePath || "./",
     frameworks: ["jasmine"],
     files: ["test/setup.ts"],

@@ -5,6 +5,7 @@ import { BehaviorPropertyObserver, BindableProperty, HtmlBehaviorResource } from
 import { coerceFunctions } from './coerce-functions';
 import { ICoerceFunction } from './interfaces';
 
+/** @internal */
 declare module 'aurelia-templating' {
   interface BehaviorPropertyObserver {
     coerce?: ICoerceFunction;
@@ -15,7 +16,7 @@ declare module 'aurelia-templating' {
   }
 
   interface BindableProperty {
-    name: string;
+    name: any;
     coerce: string | ICoerceFunction | undefined;
   }
 }
