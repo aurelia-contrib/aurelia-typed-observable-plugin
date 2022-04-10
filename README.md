@@ -221,7 +221,3 @@ class MyLine {
   @observable.point point2;
 }
 ```
-
-## Acknowledgement
-
-Special thanks to [Fred Kleuver](https://github.com/fkleuver) for his plugin skeleton at https://github.com/aurelia-contrib/aurelia-plugin-skeleton-ts-webpack

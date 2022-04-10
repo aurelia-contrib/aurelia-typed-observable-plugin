@@ -19,9 +19,7 @@ let _usePropertyType = false;
 
 // export type IObservableDecoratorFunction<T = any> = (nameOrTargetOrConfig: string | Function | ObservablePropertyConfig<T>, key?: string, descriptor?: PropertyDescriptor) => any;
 
-export interface IObservableDecoratorFunction<T = any> extends IPropertyDecoratorFunction<T> {
-
-}
+export type IObservableDecoratorFunction<T = any> = IPropertyDecoratorFunction<T>
 
 export interface IObservableDecorator extends IObservableDecoratorFunction {
   // usePropertyType(shouldUsePropType: boolean): void;
@@ -59,7 +57,7 @@ export const observable: IObservableDecorator = function observable(nameOrTarget
     } else if (_usePropertyType) {
       propType = metadata.getOwn(metadata.propertyType, target, key) as any;
       if (propType) {
-        coerceFunction = coerceFunctions[coerceFunctionMap.get(propType)!];
+        coerceFunction = coerceFunctions[coerceFunctionMap.get(propType)];
         if (coerceFunction === undefined) {
           observableLogger.warn(`Unable to find coerce function for type ${propType.name}.`);
         }
@@ -75,7 +73,7 @@ export const observable: IObservableDecorator = function observable(nameOrTarget
     const isClassDecorator = key === undefined;
     if (isClassDecorator) {
       target = target.prototype;
-      key = typeof config === 'string' ? config : config!.name;
+      key = typeof config === 'string' ? config : config.name;
     }
 
     // use a convention to compute the inner property name
@@ -105,25 +103,25 @@ export const observable: IObservableDecorator = function observable(nameOrTarget
     } else {
       // there is no descriptor if the target was a field in TS (although Babel provides one),
       // or if the decorator was applied to a class.
-      descriptor = {} as any;
+      descriptor = {};
     }
     // make the accessor enumerable by default, as fields are enumerable
-    if (!('enumerable' in descriptor!)) {
-      descriptor!.enumerable = true;
+    if (!('enumerable' in descriptor)) {
+      descriptor.enumerable = true;
     }
 
     // we're adding a getter and setter which means the property descriptor
     // cannot have a "value" or "writable" attribute
-    delete descriptor!.value;
-    delete descriptor!.writable;
-    delete descriptor!.initializer;
+    delete descriptor.value;
+    delete descriptor.writable;
+    delete descriptor.initializer;
 
     // Add the inner property on the prototype.
     Reflect.defineProperty(target, innerPropertyName, innerPropertyDescriptor);
 
     // add the getter and setter to the property descriptor.
-    descriptor!.get = function(this: any) { return this[innerPropertyName]; };
-    descriptor!.set = function(this: any, newValue: any) {
+    descriptor.get = function(this: any) { return this[innerPropertyName]; };
+    descriptor.set = function(this: any, newValue: any) {
       let oldValue = this[innerPropertyName];
       let coercedValue = coerceFunction === undefined ? newValue : coerceFunction(newValue);
       if (coercedValue === oldValue) {
@@ -141,10 +139,10 @@ export const observable: IObservableDecorator = function observable(nameOrTarget
 
     // make sure Aurelia doesn't use dirty-checking by declaring the property's
     // dependencies. This is the equivalent of "@computedFrom(...)".
-    (descriptor!.get as Function & { dependencies?: string[] }).dependencies = [innerPropertyName];
+    (descriptor.get as Function & { dependencies?: string[] }).dependencies = [innerPropertyName];
 
     if (isClassDecorator) {
-      Reflect.defineProperty(target, key!, descriptor!);
+      Reflect.defineProperty(target, key, descriptor);
     } else {
       return descriptor;
     }

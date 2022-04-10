@@ -4,9 +4,9 @@ import { Logger } from 'aurelia-logging';
 import { observable, usePropertyType as usePropertyTypeForObservable } from '../../src/observable';
 
 namespace Reflect {
-  export var getOwnMetadata: any;
-  export var defineMetadata: any;
-  export var metadata: any;
+  export let getOwnMetadata: any;
+  export let defineMetadata: any;
+  export let metadata: any;
 }
 
 
@@ -63,6 +63,7 @@ describe('coerce', () => {
 
   it('warns when using unknown coerce', () => {
     spyOn(Logger.prototype, 'warn');
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     class MyClass {
       @observable({ coerce: 'name' })
       prop: any;
@@ -222,6 +223,7 @@ describe('coerce', () => {
       usePropertyTypeForObservable(true);
       spyOn(Logger.prototype, 'warn');
 
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       class MyClass {
 
         @observable
@@ -238,6 +240,7 @@ describe('coerce', () => {
       usePropertyTypeForObservable(true);
       spyOn(Logger.prototype, 'warn');
 
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       class MyClass {
         @observable
         @Reflect.metadata(metadata.propertyType, PropertyType)

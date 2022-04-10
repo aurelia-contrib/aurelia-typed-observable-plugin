@@ -1,27 +1,15 @@
-import * as karma from "karma";
-import * as path from "path";
-import * as webpack from "webpack";
+const path = require('path');
+const webpack = require('webpack');
 
-export interface IKarmaConfig extends karma.Config, IKarmaConfigOptions {
-  transpileOnly?: boolean;
-  noInfo?: boolean;
-  coverage?: boolean;
-  tsconfig?: string;
-  set(config: IKarmaConfigOptions): void;
-}
-
-export interface IKarmaConfigOptions extends karma.ConfigOptions {
-  webpack: webpack.Configuration;
-  coverageIstanbulReporter?: any;
-  webpackServer: any;
-  customLaunchers: any;
-}
-
-export default (config: IKarmaConfig): void => {
-  const rules: webpack.Rule[] = [];
-
-  const options: IKarmaConfigOptions = {
-    basePath: config.basePath || "./",
+module.exports =
+/**
+ * @param {import('karma').Config} config
+ */
+(config) => {
+  const browsers = config.browsers;
+  /** @type {import('karma').ConfigOptions} */
+  const options = {
+    basePath: '',
     frameworks: ["jasmine"],
     files: ["test/setup.ts"],
     preprocessors: {
@@ -31,39 +19,47 @@ export default (config: IKarmaConfig): void => {
       mode: "development",
       resolve: {
         extensions: [".ts", ".js"],
-        modules: ["src", "node_modules"],
+        modules: [path.resolve(__dirname, 'node_modules')],
         alias: {
-          src: path.resolve(__dirname, "src")
+          src: path.resolve(__dirname, 'src'),
+          'aurelia-typed-observable-plugin': path.resolve(__dirname, 'src/index.ts'),
+          test: path.resolve(__dirname, 'test')
         }
       },
-      devtool: "cheap-module-eval-source-map",
+      devtool: "inline-source-map",
       module: {
         rules: [
           {
             test: /\.ts$/,
             loader: "ts-loader",
-            exclude: /node_modules/,
-            options: {
-              configFile: config.tsconfig,
-              transpileOnly: config.transpileOnly
-            }
+            exclude: /node_modules/
           }
         ]
-      }
+      },
+      plugins: [
+        new webpack.SourceMapDevToolPlugin({
+          test: /\.(ts|js|css)($|\?)/i
+        })
+      ]
     },
     mime: {
       "text/x-typescript": ["ts"]
     },
     reporters: ["mocha", "progress"],
     webpackServer: { noInfo: config.noInfo },
-    browsers: config.browsers || ["Chrome"],
+    browsers: Array.isArray(browsers) && browsers.length > 0 ? browsers : ['ChromeHeadless'],
+    logLevel: config.LOG_INFO,
     customLaunchers: {
       ChromeDebugging: {
         base: "Chrome",
         flags: ["--remote-debugging-port=9333"],
         debug: true
       }
-    }
+    },
+    mochaReporter: {
+      ignoreSkipped: true
+    },
+    singleRun: false
   };
 
   if (config.coverage) {

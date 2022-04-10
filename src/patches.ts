@@ -5,6 +5,7 @@ import { BehaviorPropertyObserver, BindableProperty, HtmlBehaviorResource } from
 import { coerceFunctions } from './coerce-functions';
 import { ICoerceFunction } from './interfaces';
 
+/** @internal */
 declare module 'aurelia-templating' {
   interface BehaviorPropertyObserver {
     coerce?: ICoerceFunction;
@@ -15,7 +16,7 @@ declare module 'aurelia-templating' {
   }
 
   interface BindableProperty {
-    name: string;
+    name: any;
     coerce: string | ICoerceFunction | undefined;
   }
 }
@@ -88,7 +89,7 @@ BindableProperty.prototype.createObserver = function(
   let initialValue;
 
   if ((this as any).hasOptions) {
-    return undefined!;
+    return undefined;
   }
 
   if (changeHandlerName in viewModel) {
@@ -114,7 +115,7 @@ BindableProperty.prototype.createObserver = function(
     this.owner.taskQueue,
     viewModel,
     this.name,
-    selfSubscriber!,
+    selfSubscriber,
     initialValue
   ) as any;
   if (this.coerce !== undefined) {
@@ -156,7 +157,7 @@ BindableProperty.prototype.createObserver = function(
     this.owner.taskQueue,
     viewModel,
     name,
-    selfSubscriber!,
+    selfSubscriber,
     undefined
   ) as ExtendedBehaviorPropertyObserver;
 

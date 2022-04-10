@@ -1,5 +1,4 @@
 // tslint:disable
-import "aurelia-loader-webpack";
 import "aurelia-polyfills";
 import { initialize } from "aurelia-pal-browser";
 // tslint:enable
