@@ -1,14 +1,15 @@
 const path = require('path');
+const webpack = require('webpack');
 
-export default
+module.exports =
 /**
  * @param {import('karma').Config} config
  */
 (config) => {
-
+  const browsers = config.browsers;
   /** @type {import('karma').ConfigOptions} */
   const options = {
-    basePath: config.basePath || "./",
+    basePath: '',
     frameworks: ["jasmine"],
     files: ["test/setup.ts"],
     preprocessors: {
@@ -18,39 +19,47 @@ export default
       mode: "development",
       resolve: {
         extensions: [".ts", ".js"],
-        modules: ["src", "node_modules"],
+        modules: [path.resolve(__dirname, 'node_modules')],
         alias: {
-          src: path.resolve(__dirname, "src")
+          src: path.resolve(__dirname, 'src'),
+          'aurelia-typed-observable-plugin': path.resolve(__dirname, 'src/index.ts'),
+          test: path.resolve(__dirname, 'test')
         }
       },
-      devtool: "cheap-module-eval-source-map",
+      devtool: "inline-source-map",
       module: {
         rules: [
           {
             test: /\.ts$/,
             loader: "ts-loader",
-            exclude: /node_modules/,
-            options: {
-              configFile: config.tsconfig,
-              transpileOnly: config.transpileOnly
-            }
+            exclude: /node_modules/
           }
         ]
-      }
+      },
+      plugins: [
+        new webpack.SourceMapDevToolPlugin({
+          test: /\.(ts|js|css)($|\?)/i
+        })
+      ]
     },
     mime: {
       "text/x-typescript": ["ts"]
     },
     reporters: ["mocha", "progress"],
     webpackServer: { noInfo: config.noInfo },
-    browsers: config.browsers || ["Chrome"],
+    browsers: Array.isArray(browsers) && browsers.length > 0 ? browsers : ['ChromeHeadless'],
+    logLevel: config.LOG_INFO,
     customLaunchers: {
       ChromeDebugging: {
         base: "Chrome",
         flags: ["--remote-debugging-port=9333"],
         debug: true
       }
-    }
+    },
+    mochaReporter: {
+      ignoreSkipped: true
+    },
+    singleRun: false
   };
 
   if (config.coverage) {
