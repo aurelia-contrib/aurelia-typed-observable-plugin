@@ -1,6 +1,6 @@
 {
   "name": "aurelia-typed-observable-plugin",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "description": "A plugin for @observable and @bindable value coercion",
   "keywords": [
     "aurelia",
@@ -40,8 +40,8 @@
     "build:dts": "dts-bundle-generator src/index.ts -o dist/types/aurelia-typed-observable-plugin.d.ts",
     "postbuild": "npm run build:dts",
     "changelog": "standard-version -i doc/CHANGELOG.md --skip.commit --skip.tag",
-    "precut-release": "npm run test && npm run lint",
-    "cut-release": "npm run build && npm run changelog"
+    "precut-release": "npm run test && npm run lint && npm run build",
+    "cut-release": "npm run changelog"
   },
   "dependencies": {
     "aurelia-binding": "^2.0.0",

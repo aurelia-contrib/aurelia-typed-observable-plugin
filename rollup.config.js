@@ -22,7 +22,7 @@ const options = [
   {
     input: inputFileName,
     output: [{
-      file: `dist/es2017/${name}.js`,
+      file: `dist/es2017/index.js`,
       format: 'esm'
     }],
     plugins: [
@@ -39,7 +39,7 @@ const options = [
         { file: 'dist/amd/index.js', format: 'amd', amd: { id: name } },
         { file: 'dist/commonjs/index.js', format: 'cjs' },
         { file: 'dist/native-modules/index.js', format: 'es' },
-        { file: `dist/system/${name}.js`, format: 'system' },
+        { file: `dist/system/index.js`, format: 'system' },
       ],
       plugins: [
         typescript({
