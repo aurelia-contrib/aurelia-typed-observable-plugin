@@ -15,9 +15,7 @@ export interface IBindablePropertyConfig<T = any> extends IPropertyDecoratorConf
   reflectToAttribute?: boolean | { (el: Element, name: string, newVal: any, oldVal: any): any };
 }
 
-export interface IBindableDecoratorFunction<T = any> extends IPropertyDecoratorFunction<T> {
-
-}
+export type IBindableDecoratorFunction<T = any> = IPropertyDecoratorFunction<T>
 
 export interface IBindableDecorator<T = any> extends IBindableDecoratorFunction<T> {
   string: IBindableDecoratorFunction<string>;

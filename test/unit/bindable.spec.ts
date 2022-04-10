@@ -7,9 +7,9 @@ import { coerceFunctionMap } from '../../src/coerce-functions';
 import { metadata } from 'aurelia-metadata';
 
 namespace Reflect {
-  export var getOwnMetadata: any;
-  export var defineMetadata: any;
-  export var metadata: any;
+  export let getOwnMetadata: any;
+  export let defineMetadata: any;
+  export let metadata: any;
 }
 
 describe('coerce', () => {

@@ -89,7 +89,7 @@ BindableProperty.prototype.createObserver = function(
   let initialValue;
 
   if ((this as any).hasOptions) {
-    return undefined!;
+    return undefined;
   }
 
   if (changeHandlerName in viewModel) {
@@ -115,7 +115,7 @@ BindableProperty.prototype.createObserver = function(
     this.owner.taskQueue,
     viewModel,
     this.name,
-    selfSubscriber!,
+    selfSubscriber,
     initialValue
   ) as any;
   if (this.coerce !== undefined) {
@@ -157,7 +157,7 @@ BindableProperty.prototype.createObserver = function(
     this.owner.taskQueue,
     viewModel,
     name,
-    selfSubscriber!,
+    selfSubscriber,
     undefined
   ) as ExtendedBehaviorPropertyObserver;
 
