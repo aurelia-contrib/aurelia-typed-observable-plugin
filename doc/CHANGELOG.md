@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.1](https://github.com/bigopon/aurelia-typed-observable-plugin/compare/v0.5.0...v0.5.1) (2022-05-04)
+
+
+### Bug Fixes
+
+* **typings:** correct typings path ([2d76b03](https://github.com/bigopon/aurelia-typed-observable-plugin/commit/2d76b03e0b28fb64b9edba5dd69c803c8c82fa4a)), closes [#11](https://github.com/bigopon/aurelia-typed-observable-plugin/issues/11)
+
 ## [0.5.0](https://github.com/bigopon/aurelia-typed-observable-plugin/compare/v0.4.2...v0.5.0) (2022-04-10)
 
 
