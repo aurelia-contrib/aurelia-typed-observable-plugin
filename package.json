@@ -18,7 +18,7 @@
   "author": "bigopon <bigopon.777@gmail.com>",
   "main": "dist/commonjs/index.js",
   "module": "dist/native-modules/index.js",
-  "typings": "dist/types/aurelia-type-observable-plugin.d.ts",
+  "typings": "dist/types/aurelia-typed-observable-plugin.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/bigopon/aurelia-typed-observable-plugin"
